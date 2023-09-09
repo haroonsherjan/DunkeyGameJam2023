@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dilwwc6iot5vx"]
+
+[ext_resource type="Script" path="res://Character/Follower.gd" id="1_76ahc"]
+[ext_resource type="Texture2D" uid="uid://c4vgt67hmwwjp" path="res://icon.svg" id="2_y2qtk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ojdxb"]
+size = Vector2(36, 36)
+
+[node name="Follower" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_76ahc")
+metadata/isFollowing = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_y2qtk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ojdxb")
