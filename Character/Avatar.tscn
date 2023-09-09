@@ -1,3 +1,40 @@
-[gd_scene format=3 uid="uid://bf2nfqway16o7"]
+[gd_scene load_steps=6 format=3 uid="uid://bf2nfqway16o7"]
 
-[node name="Avatar" type="Node2D"]
+[ext_resource type="Script" path="res://Character/Avatar.gd" id="1_ijdmv"]
+[ext_resource type="Texture2D" uid="uid://c4vgt67hmwwjp" path="res://icon.svg" id="1_ta3yp"]
+[ext_resource type="Script" path="res://Character/FollowerInventory.gd" id="3_1rcty"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sb7i8"]
+radius = 80.2247
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_28e7v"]
+radius = 172.186
+
+[node name="Avatar" type="CharacterBody2D"]
+script = ExtResource("1_ijdmv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -46)
+texture = ExtResource("1_ta3yp")
+
+[node name="FollowerInventory" type="Node2D" parent="."]
+script = ExtResource("3_1rcty")
+
+[node name="CloseEnough" type="Area2D" parent="FollowerInventory"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FollowerInventory/CloseEnough"]
+position = Vector2(0, -24)
+shape = SubResource("CircleShape2D_sb7i8")
+
+[node name="DiscoverFollowers" type="Area2D" parent="FollowerInventory"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FollowerInventory/DiscoverFollowers"]
+shape = SubResource("CircleShape2D_28e7v")
+
+[connection signal="body_entered" from="FollowerInventory/CloseEnough" to="FollowerInventory" method="_on_close_enough_body_entered"]
+[connection signal="body_exited" from="FollowerInventory/CloseEnough" to="FollowerInventory" method="_on_close_enough_body_exited"]
+[connection signal="body_entered" from="FollowerInventory/DiscoverFollowers" to="FollowerInventory" method="_on_discover_followers_body_entered"]
