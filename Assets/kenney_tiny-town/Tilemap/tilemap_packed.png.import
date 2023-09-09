@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wvm8xuu8vlqe"
-path="res://.godot/imported/tilemap.png-e7cb565af5a0a7e21a094e75f0c6ec5e.ctex"
+uid="uid://xfxfc1xjecgo"
+path="res://.godot/imported/tilemap_packed.png-2f50f23ab2932dcfea5ee6255e0f570e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Character/Test/tilemap.png"
-dest_files=["res://.godot/imported/tilemap.png-e7cb565af5a0a7e21a094e75f0c6ec5e.ctex"]
+source_file="res://Assets/kenney_tiny-town/Tilemap/tilemap_packed.png"
+dest_files=["res://.godot/imported/tilemap_packed.png-2f50f23ab2932dcfea5ee6255e0f570e.ctex"]
 
 [params]
 
