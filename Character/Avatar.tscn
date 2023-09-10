@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bf2nfqway16o7"]
+[gd_scene load_steps=8 format=3 uid="uid://bf2nfqway16o7"]
 
 [ext_resource type="Script" path="res://Character/Avatar.gd" id="1_ijdmv"]
 [ext_resource type="Texture2D" uid="uid://c4vgt67hmwwjp" path="res://icon.svg" id="1_ta3yp"]
@@ -10,18 +10,27 @@ radius = 80.2247
 [sub_resource type="CircleShape2D" id="CircleShape2D_28e7v"]
 radius = 172.186
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_isftj"]
+radius = 64.0703
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ta01"]
+size = Vector2(119, 120)
+
 [node name="Avatar" type="CharacterBody2D"]
+collision_mask = 8
 script = ExtResource("1_ijdmv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
 position = Vector2(0, -46)
 texture = ExtResource("1_ta3yp")
 
 [node name="FollowerInventory" type="Node2D" parent="."]
+y_sort_enabled = true
 script = ExtResource("3_1rcty")
 
 [node name="CloseEnough" type="Area2D" parent="FollowerInventory"]
-collision_layer = 2
+collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FollowerInventory/CloseEnough"]
@@ -29,12 +38,33 @@ position = Vector2(0, -24)
 shape = SubResource("CircleShape2D_sb7i8")
 
 [node name="DiscoverFollowers" type="Area2D" parent="FollowerInventory"]
-collision_layer = 2
+collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FollowerInventory/DiscoverFollowers"]
 shape = SubResource("CircleShape2D_28e7v")
 
+[node name="FollowerHolster" type="Marker2D" parent="FollowerInventory"]
+position = Vector2(48, 0)
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(1, -47)
+shape = SubResource("CircleShape2D_isftj")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-0.5, -46)
+shape = SubResource("RectangleShape2D_0ta01")
+
+[node name="HurtTimer" type="Timer" parent="Hurtbox"]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="body_entered" from="FollowerInventory/CloseEnough" to="FollowerInventory" method="_on_close_enough_body_entered"]
 [connection signal="body_exited" from="FollowerInventory/CloseEnough" to="FollowerInventory" method="_on_close_enough_body_exited"]
 [connection signal="body_entered" from="FollowerInventory/DiscoverFollowers" to="FollowerInventory" method="_on_discover_followers_body_entered"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="timeout" from="Hurtbox/HurtTimer" to="." method="_on_hurt_timer_timeout"]
