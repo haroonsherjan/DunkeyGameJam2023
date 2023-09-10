@@ -8,7 +8,7 @@ size = Vector2(36, 36)
 
 [node name="Follower" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 2
+collision_mask = 24
 script = ExtResource("1_76ahc")
 metadata/isFollowing = false
 

@@ -16,3 +16,11 @@ config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 config/follower_resource="res://Character/Follower.tscn"
 config/player_resource="res://Character/Avatar.tscn"
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Follower"
+2d_physics/layer_3="Damage"
+2d_physics/layer_4="Environment"
+2d_physics/layer_5="FollowerDamage"
