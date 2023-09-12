@@ -1,0 +1,120 @@
+[gd_scene load_steps=17 format=3 uid="uid://dqb5fy4orlynx"]
+
+[ext_resource type="Script" path="res://Pikmin/BattleBit.gd" id="1_ewbn3"]
+[ext_resource type="Texture2D" uid="uid://bumhf6bdjs6yu" path="res://Assets/MAX.png" id="1_wa625"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8sbk"]
+atlas = ExtResource("1_wa625")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ju3k7"]
+atlas = ExtResource("1_wa625")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wewln"]
+atlas = ExtResource("1_wa625")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1pksu"]
+atlas = ExtResource("1_wa625")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4ctk"]
+atlas = ExtResource("1_wa625")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbnc2"]
+atlas = ExtResource("1_wa625")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8olr"]
+atlas = ExtResource("1_wa625")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jpp6g"]
+atlas = ExtResource("1_wa625")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67c1b"]
+atlas = ExtResource("1_wa625")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oe0ue"]
+atlas = ExtResource("1_wa625")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8w6s"]
+atlas = ExtResource("1_wa625")
+region = Rect2(256, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32knk"]
+atlas = ExtResource("1_wa625")
+region = Rect2(320, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0vwdb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t8sbk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ju3k7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wewln")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1pksu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4ctk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbnc2")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t8olr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpp6g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67c1b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oe0ue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8w6s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32knk")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cc5fe"]
+size = Vector3(0.3, 0.4, 0.3)
+
+[node name="BattleBit" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 2
+platform_floor_layers = 4294967280
+script = ExtResource("1_ewbn3")
+
+[node name="Sprite" type="AnimatedSprite3D" parent="."]
+billboard = 2
+texture_filter = 2
+sprite_frames = SubResource("SpriteFrames_0vwdb")
+animation = &"Walk"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0716315, 0)
+shape = SubResource("BoxShape3D_cc5fe")

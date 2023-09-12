@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://7c5mfkcqmj4v"]
+
+[node name="Player UI" type="CanvasLayer"]
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Node3D"]
+offset_right = 1153.0
+offset_bottom = 649.0
+
+[node name="SubViewport" type="SubViewport" parent="Node3D/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+modulate = Color(0.211765, 1, 0.341176, 1)
+light_mask = 0
+offset_left = 28.0
+offset_top = 598.0
+offset_right = 288.0
+offset_bottom = 625.0
+show_percentage = false
+
+[node name="CurrentBBCount" type="RichTextLabel" parent="."]
+offset_left = 1048.0
+offset_top = 600.0
+offset_right = 1088.0
+offset_bottom = 640.0
+text = "10
+"
+
+[node name="TotalBBCount" type="RichTextLabel" parent="."]
+offset_left = 1088.0
+offset_top = 600.0
+offset_right = 1128.0
+offset_bottom = 640.0
+text = "/20"

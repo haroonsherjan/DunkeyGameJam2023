@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://4c6h1lsvi30j"]
+
+[ext_resource type="PackedScene" uid="uid://rg70ndbil0rd" path="res://Assets/map_01.glb" id="1_sq7wb"]
+
+[node name="map_01" instance=ExtResource("1_sq7wb")]
+
+[node name="Plane" parent="." index="0"]
+layers = 31
+
+[node name="StaticBody3D" parent="Plane" index="0"]
+collision_layer = 15
+collision_mask = 15

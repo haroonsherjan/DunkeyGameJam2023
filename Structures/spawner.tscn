@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://f6mtddesomn3"]
+
+[ext_resource type="PackedScene" uid="uid://clmjnply3ckhn" path="res://Assets/spawner.glb" id="1_g3hpq"]
+[ext_resource type="Script" path="res://Structures/Spawner.gd" id="2_wga3v"]
+[ext_resource type="PackedScene" uid="uid://c1cmmgs5xnv6m" path="res://Scripts/Interactable.tscn" id="3_07prh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rqtvg"]
+size = Vector3(7.24123, 11.6855, 8.28643)
+
+[node name="spawner" instance=ExtResource("1_g3hpq")]
+script = ExtResource("2_wga3v")
+
+[node name="Interactable" parent="." index="1" instance=ExtResource("3_07prh")]
+
+[node name="CollisionShape3D" parent="Interactable" index="0"]
+shape = SubResource("BoxShape3D_rqtvg")
+
+[connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]
+
+[editable path="Interactable"]

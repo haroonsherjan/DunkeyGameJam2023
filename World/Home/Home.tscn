@@ -1,3 +1,46 @@
-[gd_scene format=3 uid="uid://b07v4kr8yy6jg"]
+[gd_scene load_steps=9 format=3 uid="uid://b07v4kr8yy6jg"]
 
-[node name="Home" type="Node2D"]
+[ext_resource type="Texture2D" uid="uid://dytt2gnpo2d6x" path="res://Assets/Sky_Day_BlueSky_Equirect.png" id="1_wkcp4"]
+[ext_resource type="PackedScene" uid="uid://b3td1vh52htrm" path="res://Character/Test/TestPlayer.tscn" id="2_ro20m"]
+[ext_resource type="PackedScene" uid="uid://b2b7l8aollnxu" path="res://Enemies/bulborb.tscn" id="3_7hdgj"]
+[ext_resource type="PackedScene" uid="uid://f6mtddesomn3" path="res://Structures/spawner.tscn" id="5_077et"]
+[ext_resource type="PackedScene" uid="uid://4c6h1lsvi30j" path="res://World/Home/map_01.tscn" id="5_n60wr"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_tq5vu"]
+panorama = ExtResource("1_wkcp4")
+
+[sub_resource type="Sky" id="Sky_pf1de"]
+sky_material = SubResource("PanoramaSkyMaterial_tq5vu")
+
+[sub_resource type="Environment" id="Environment_b6ujb"]
+background_mode = 2
+sky = SubResource("Sky_pf1de")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Home" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_b6ujb")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.519712, 0.107876, -0.847504, -0.845775, -0.205093, 0.492546, -0.120683, 0.972779, 0.197828, -29.1127, 17.2977, 0)
+layers = 31
+light_energy = 1.046
+light_indirect_energy = 0.791
+light_volumetric_fog_energy = 1.627
+light_angular_distance = 2.35
+shadow_enabled = true
+shadow_opacity = 0.7
+shadow_blur = 1.09
+
+[node name="TestPlayer" parent="." instance=ExtResource("2_ro20m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.79313, -4.75839, 0)
+
+[node name="bulborb" parent="." instance=ExtResource("3_7hdgj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.6655, -4.24777, -22.048)
+
+[node name="spawner" parent="." instance=ExtResource("5_077et")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.8163, 1.96241, 0)
+
+[node name="map_01" parent="." instance=ExtResource("5_n60wr")]

@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://b3td1vh52htrm"]
+
+[ext_resource type="Texture2D" uid="uid://ml7gqwwb4avl" path="res://Assets/player.png" id="1_4fqlx"]
+[ext_resource type="Script" path="res://Character/Test/TestPlayer.gd" id="1_7xs58"]
+[ext_resource type="Script" path="res://Character/Test/RayCast3D.gd" id="3_lbrii"]
+[ext_resource type="PackedScene" uid="uid://7c5mfkcqmj4v" path="res://UI/Player UI.tscn" id="4_rk1oo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dafxn"]
+size = Vector3(0.468445, 0.64642, 0.416796)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a6anf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4fqlx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="TestPlayer" type="CharacterBody3D"]
+script = ExtResource("1_7xs58")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_dafxn")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+billboard = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_a6anf")
+
+[node name="CameraTwistPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="CameraPitchPivot" type="Node3D" parent="CameraTwistPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraTwistPivot/CameraPitchPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, -0.5, 4)
+fov = 70.5
+
+[node name="RayCast3D" type="RayCast3D" parent="CameraTwistPivot/CameraPitchPivot/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, -0.173648, -0.984808, 0, 0.984808, -0.173648, 0, -0.0591159, -0.677119)
+target_position = Vector3(0, -6, 0)
+collision_mask = 256
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+script = ExtResource("3_lbrii")
+
+[node name="Player UI" parent="CameraTwistPivot/CameraPitchPivot/Camera3D" instance=ExtResource("4_rk1oo")]
